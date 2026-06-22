@@ -114,21 +114,38 @@ if not st.session_state["inicializado"]:
     st.markdown("""
         <style>
         .stApp {
-            background: linear-gradient(135deg, #0D2C54 0%, #1E5AA8 100%);
+            background: linear-gradient(135deg, #0D2C54 0%, #1E5AA8 55%, #D4AF37 100%);
         }
 
         .center {
             text-align: center;
-            margin-top: 15%;
-            font-size: 34px;
+            margin-top: 10%;
+            font-size: 38px;
             font-weight: bold;
-            color: #D4AF37;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.35);
+        }
+
+        .loading-subtitle {
+            text-align: center;
+            color: #FFFFFF;
+            font-size: 18px;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.35);
         }
         </style>
     """, unsafe_allow_html=True)
 
-    st.markdown("<div class='center'>🚗 AutoClássicos</div>", unsafe_allow_html=True)
-    st.write("Inicializando sistema...")
+    st.markdown(
+        "<div class='center'>🚗 AutoClássicos</div>",
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        "<div class='loading-subtitle'>Sistema de Gestão de Encontros de Carros Antigos</div>",
+        unsafe_allow_html=True
+    )
 
     progress = st.progress(0)
 
