@@ -7,6 +7,7 @@ from telas.login import tela_login
 from telas.usuarios import tela_usuarios
 from telas.eventos import tela_eventos
 from telas.clubes import tela_clubes
+from telas.participantes import tela_participantes
 
 
 st.set_page_config(page_title="AutoClássicos", layout="wide")
@@ -65,7 +66,7 @@ else:
 
     menu = st.sidebar.selectbox(
         "Menu",
-        ["Dashboard", "Usuários", "Eventos", "Clubes", "Sair"]
+        ["Dashboard", "Usuários", "Eventos", "Clubes", "Participantes", "Sair"]
     )
 
     if menu == "Sair":
@@ -84,3 +85,6 @@ else:
 
     elif menu == "Clubes":
         tela_clubes()
+
+    elif menu == "Participantes":
+        tela_participantes()

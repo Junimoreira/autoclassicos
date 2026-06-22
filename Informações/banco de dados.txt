@@ -6,3 +6,9 @@ postgresql://autoclassicos_user:Nb8ItKQFEy9HGBCbExjn5B032TtiP0o7@dpg-d8sk026q1p3
 
 psql command:
 render psql dpg-d8sk026q1p3s73bpg6eg-a
+
+
+$env:DATABASE_URL="postgresql://autoclassicos_user:Nb8ItKQFEy9HGBCbExjn5B032TtiP0o7@dpg-d8sk026q1p3s73bpg6eg-a.virginia-postgres.render.com/autoclassicos"
+python seed_user.py
+
+

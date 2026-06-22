@@ -100,6 +100,42 @@ def criar_tabelas():
         ADD COLUMN IF NOT EXISTS created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
     """)
 
+    # ==================================================
+    # PARTICIPANTES
+    # ==================================================
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS participantes (
+
+            id SERIAL PRIMARY KEY,
+
+            nome VARCHAR(150) NOT NULL,
+
+            telefone VARCHAR(50),
+
+            email VARCHAR(150),
+
+            cidade VARCHAR(100),
+
+            estado CHAR(2),
+
+            clube_id INTEGER,
+
+            primeira_participacao BOOLEAN DEFAULT TRUE,
+
+            autorizacao_imagem BOOLEAN DEFAULT TRUE,
+
+            observacoes TEXT,
+
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+            CONSTRAINT fk_participante_clube
+                FOREIGN KEY (clube_id)
+                REFERENCES clubes(id)
+                ON DELETE SET NULL
+
+        );
+    """)
+
     conn.commit()
 
     cur.close()
