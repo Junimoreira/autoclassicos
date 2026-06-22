@@ -1,14 +1,17 @@
 import streamlit as st
 import time
+
+from database.init_db import criar_tabelas
+
 from telas.login import tela_login
 from telas.usuarios import tela_usuarios
 from telas.eventos import tela_eventos
 from telas.clubes import tela_clubes
 
-from database.init_db import criar_tabelas
+
+st.set_page_config(page_title="AutoClássicos", layout="wide")
 
 criar_tabelas()
-st.set_page_config(page_title="AutoClássicos", layout="wide")
 
 
 # =========================
@@ -58,7 +61,7 @@ if not st.session_state["logado"]:
 
 else:
 
-    st.sidebar.title("AutoClássicos")
+    st.sidebar.title("🚗 AutoClássicos")
 
     menu = st.sidebar.selectbox(
         "Menu",
@@ -70,15 +73,14 @@ else:
         st.rerun()
 
     elif menu == "Dashboard":
-        st.title("Dashboard")
+        st.title("📊 Dashboard")
+        st.info("Dashboard em desenvolvimento.")
 
     elif menu == "Usuários":
         tela_usuarios()
 
     elif menu == "Eventos":
-        st.write("Eventos")
+        tela_eventos()
 
     elif menu == "Clubes":
-        st.write("Clubes")
-
-   
+        tela_clubes()
