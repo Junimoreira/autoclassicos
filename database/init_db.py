@@ -136,6 +136,42 @@ def criar_tabelas():
         );
     """)
 
+    # ==================================================
+    # VEÍCULOS
+    # ==================================================
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS veiculos (
+
+            id SERIAL PRIMARY KEY,
+
+            participante_id INTEGER NOT NULL,
+
+            marca VARCHAR(100) NOT NULL,
+
+            modelo VARCHAR(100) NOT NULL,
+
+            ano INTEGER,
+
+            cor VARCHAR(50),
+
+            placa VARCHAR(20) UNIQUE,
+
+            categoria VARCHAR(50),
+
+            foto TEXT,
+
+            descricao TEXT,
+
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+            CONSTRAINT fk_veiculo_participante
+                FOREIGN KEY (participante_id)
+                REFERENCES participantes(id)
+                ON DELETE CASCADE
+
+        );
+    """)
+
     conn.commit()
 
     cur.close()
