@@ -5,6 +5,9 @@ from telas.usuarios import tela_usuarios
 from telas.eventos import tela_eventos
 from telas.clubes import tela_clubes
 
+from database.init_db import criar_tabelas
+
+criar_tabelas()
 st.set_page_config(page_title="AutoClássicos", layout="wide")
 
 
