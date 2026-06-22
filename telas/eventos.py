@@ -14,6 +14,10 @@ def tela_eventos():
 
     st.title("📅 Gestão de Eventos")
 
+    if st.session_state.get("evento_cadastrado"):
+        st.success("Evento cadastrado com sucesso!")
+        st.session_state["evento_cadastrado"] = False
+
     abas = st.tabs([
         "📋 Listar",
         "➕ Cadastrar",
@@ -21,9 +25,6 @@ def tela_eventos():
         "🗑️ Excluir"
     ])
 
-    # =========================
-    # LISTAR
-    # =========================
     with abas[0]:
 
         st.subheader("📋 Eventos cadastrados")
@@ -35,14 +36,11 @@ def tela_eventos():
         else:
             st.dataframe(df, use_container_width=True)
 
-    # =========================
-    # CADASTRAR
-    # =========================
     with abas[1]:
 
         st.subheader("➕ Cadastrar Evento")
 
-        with st.form("form_cadastrar_evento"):
+        with st.form("form_cadastrar_evento", clear_on_submit=True):
 
             nome = st.text_input("Nome do Evento")
             cidade = st.text_input("Cidade")
@@ -79,14 +77,11 @@ def tela_eventos():
                     )
 
                     if sucesso:
-                        st.success("Evento cadastrado com sucesso!")
+                        st.session_state["evento_cadastrado"] = True
                         st.rerun()
                     else:
                         st.error("Erro ao cadastrar evento.")
 
-    # =========================
-    # EDITAR
-    # =========================
     with abas[2]:
 
         st.subheader("✏️ Editar Evento")
@@ -150,9 +145,6 @@ def tela_eventos():
                         else:
                             st.error("Erro ao atualizar evento.")
 
-    # =========================
-    # EXCLUIR
-    # =========================
     with abas[3]:
 
         st.subheader("🗑️ Excluir Evento")
