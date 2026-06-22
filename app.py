@@ -16,6 +16,87 @@ criar_tabelas()
 
 
 # =========================
+# ESTILO GLOBAL DO SISTEMA
+# =========================
+def aplicar_estilo_sistema():
+    st.markdown("""
+        <style>
+
+        .stApp {
+            background: linear-gradient(135deg, #F4F7FB 0%, #E6EEF8 100%);
+        }
+
+        section[data-testid="stSidebar"] {
+            background: linear-gradient(180deg, #0D2C54 0%, #1E5AA8 100%);
+        }
+
+        section[data-testid="stSidebar"] * {
+            color: #FFFFFF !important;
+        }
+
+        section[data-testid="stSidebar"] h1,
+        section[data-testid="stSidebar"] h2,
+        section[data-testid="stSidebar"] h3 {
+            color: #D4AF37 !important;
+            font-weight: 800 !important;
+        }
+
+        h1, h2, h3 {
+            color: #0D2C54 !important;
+            font-weight: 800 !important;
+        }
+
+        .stTabs [data-baseweb="tab-list"] {
+            gap: 8px;
+        }
+
+        .stTabs [data-baseweb="tab"] {
+            background-color: #FFFFFF;
+            border-radius: 10px 10px 0px 0px;
+            padding: 10px 18px;
+            color: #0D2C54;
+            font-weight: 700;
+        }
+
+        .stTabs [aria-selected="true"] {
+            background: linear-gradient(90deg, #0D2C54 0%, #1E5AA8 100%) !important;
+            color: #FFFFFF !important;
+        }
+
+        div.stButton > button {
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(90deg, #D4AF37 0%, #C89B2C 100%);
+            color: #0D2C54;
+            font-weight: 800;
+            padding: 0.55rem 1rem;
+        }
+
+        div.stButton > button:hover {
+            background: linear-gradient(90deg, #C89B2C 0%, #B8860B 100%);
+            color: #FFFFFF;
+        }
+
+        div[data-testid="stDataFrame"] {
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            padding: 8px;
+            box-shadow: 0 3px 12px rgba(13, 44, 84, 0.12);
+        }
+
+        .stAlert {
+            border-radius: 12px;
+        }
+
+        input, textarea {
+            border-radius: 8px !important;
+        }
+
+        </style>
+    """, unsafe_allow_html=True)
+
+
+# =========================
 # ESTADO INICIAL
 # =========================
 if "inicializado" not in st.session_state:
@@ -32,11 +113,16 @@ if not st.session_state["inicializado"]:
 
     st.markdown("""
         <style>
+        .stApp {
+            background: linear-gradient(135deg, #0D2C54 0%, #1E5AA8 100%);
+        }
+
         .center {
             text-align: center;
             margin-top: 15%;
-            font-size: 28px;
+            font-size: 34px;
             font-weight: bold;
+            color: #D4AF37;
         }
         </style>
     """, unsafe_allow_html=True)
@@ -61,6 +147,8 @@ if not st.session_state["logado"]:
     tela_login()
 
 else:
+
+    aplicar_estilo_sistema()
 
     st.sidebar.title("🚗 AutoClássicos")
 
