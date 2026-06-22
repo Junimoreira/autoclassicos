@@ -59,11 +59,11 @@ def tela_clubes():
                         instagram.strip()
                     )
 
-                    if sucesso:
+                    if sucesso is True:
                         st.session_state["clube_cadastrado"] = True
                         st.rerun()
                     else:
-                        st.error("Erro ao cadastrar clube. Verifique se ele já existe.")
+                        st.error(f"Erro ao cadastrar clube: {sucesso}")
 
     with abas[2]:
 
@@ -104,11 +104,11 @@ def tela_clubes():
                             instagram.strip()
                         )
 
-                        if sucesso:
+                        if sucesso is True:
                             st.success("Clube atualizado com sucesso!")
                             st.rerun()
                         else:
-                            st.error("Erro ao atualizar clube.")
+                            st.error(f"Erro ao atualizar clube: {sucesso}")
 
     with abas[3]:
 
@@ -139,8 +139,8 @@ def tela_clubes():
                 else:
                     sucesso = excluir_clube(clube_id)
 
-                    if sucesso:
+                    if sucesso is True:
                         st.success("Clube excluído com sucesso!")
                         st.rerun()
                     else:
-                        st.error("Erro ao excluir clube. Verifique se há participantes vinculados.")
+                        st.error(f"Erro ao excluir clube: {sucesso}")

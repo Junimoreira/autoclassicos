@@ -15,7 +15,7 @@ def listar_clubes():
                 nome,
                 cidade,
                 estado,
-                instagram,
+                COALESCE(instagram, '') AS instagram,
                 created_at
             FROM clubes
             ORDER BY nome
@@ -35,7 +35,7 @@ def cadastrar_clube(nome, cidade, estado, instagram):
     conn = conectar()
 
     if conn is None:
-        return False
+        return "Erro de conexão com o banco."
 
     cursor = conn.cursor()
 
@@ -59,9 +59,9 @@ def cadastrar_clube(nome, cidade, estado, instagram):
         return True
 
     except Exception as erro:
-        print("Erro ao cadastrar clube:", erro)
         conn.rollback()
-        return False
+        print("Erro ao cadastrar clube:", erro)
+        return str(erro)
 
     finally:
         cursor.close()
@@ -72,7 +72,7 @@ def atualizar_clube(clube_id, nome, cidade, estado, instagram):
     conn = conectar()
 
     if conn is None:
-        return False
+        return "Erro de conexão com o banco."
 
     cursor = conn.cursor()
 
@@ -97,9 +97,9 @@ def atualizar_clube(clube_id, nome, cidade, estado, instagram):
         return True
 
     except Exception as erro:
-        print("Erro ao atualizar clube:", erro)
         conn.rollback()
-        return False
+        print("Erro ao atualizar clube:", erro)
+        return str(erro)
 
     finally:
         cursor.close()
@@ -110,7 +110,7 @@ def excluir_clube(clube_id):
     conn = conectar()
 
     if conn is None:
-        return False
+        return "Erro de conexão com o banco."
 
     cursor = conn.cursor()
 
@@ -124,9 +124,9 @@ def excluir_clube(clube_id):
         return True
 
     except Exception as erro:
-        print("Erro ao excluir clube:", erro)
         conn.rollback()
-        return False
+        print("Erro ao excluir clube:", erro)
+        return str(erro)
 
     finally:
         cursor.close()
