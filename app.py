@@ -9,6 +9,7 @@ from telas.eventos import tela_eventos
 from telas.clubes import tela_clubes
 from telas.participantes import tela_participantes
 from telas.veiculos import tela_veiculos
+from telas.dashboard import tela_dashboard
 
 
 st.set_page_config(page_title="AutoClássicos", layout="wide")
@@ -200,8 +201,7 @@ else:
         st.rerun()
 
     elif menu == "Dashboard":
-        st.title("📊 Dashboard")
-        st.info("Dashboard em desenvolvimento.")
+    tela_dashboard()
 
     elif menu == "Usuários":
         tela_usuarios()
