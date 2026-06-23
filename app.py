@@ -12,6 +12,7 @@ from telas.veiculos import tela_veiculos
 from telas.dashboard import tela_dashboard
 
 
+
 st.set_page_config(page_title="AutoClássicos", layout="wide")
 
 criar_tabelas()
@@ -113,6 +114,14 @@ def aplicar_estilo_sistema():
         input, textarea {
             border-radius: 8px !important;
         }
+        
+        section[data-testid="stSidebar"] div[data-baseweb="select"] * {
+            color: #0D2C54 !important;
+        }
+
+        section[data-testid="stSidebar"] input {
+            color: #0D2C54 !important;
+        }
 
         </style>
     """, unsafe_allow_html=True)
@@ -201,7 +210,7 @@ else:
         st.rerun()
 
     elif menu == "Dashboard":
-    tela_dashboard()
+        tela_dashboard()
 
     elif menu == "Usuários":
         tela_usuarios()
