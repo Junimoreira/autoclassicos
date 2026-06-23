@@ -10,6 +10,7 @@ from telas.clubes import tela_clubes
 from telas.participantes import tela_participantes
 from telas.veiculos import tela_veiculos
 
+
 st.set_page_config(page_title="AutoClássicos", layout="wide")
 
 criar_tabelas()
@@ -44,6 +45,26 @@ def aplicar_estilo_sistema():
         h1, h2, h3 {
             color: #0D2C54 !important;
             font-weight: 800 !important;
+        }
+
+        label,
+        .stTextInput label,
+        .stTextArea label,
+        .stSelectbox label,
+        .stNumberInput label,
+        .stDateInput label,
+        .stCheckbox label {
+            color: #0D2C54 !important;
+            font-weight: 700 !important;
+        }
+
+        .stCheckbox label p {
+            color: #0D2C54 !important;
+            font-weight: 700 !important;
+        }
+
+        div[data-baseweb="select"] {
+            color: #0D2C54 !important;
         }
 
         .stTabs [data-baseweb="tab-list"] {
@@ -171,7 +192,7 @@ else:
 
     menu = st.sidebar.selectbox(
         "Menu",
-        ["Dashboard", "Usuários", "Eventos", "Clubes", "Participantes","Veículos", "Sair"]
+        ["Dashboard", "Usuários", "Eventos", "Clubes", "Participantes", "Veículos", "Sair"]
     )
 
     if menu == "Sair":
