@@ -172,6 +172,52 @@ def criar_tabelas():
         );
     """)
 
+          # ==================================================
+    # INSCRIÇÕES
+    # ==================================================
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS inscricoes (
+
+            id SERIAL PRIMARY KEY,
+
+            evento_id INTEGER NOT NULL,
+
+            participante_id INTEGER NOT NULL,
+
+            veiculo_id INTEGER NOT NULL,
+
+            numero_inscricao INTEGER,
+
+            quantidade_pessoas INTEGER DEFAULT 1,
+
+            chegada_prevista DATE,
+
+            saida_prevista DATE,
+
+            status VARCHAR(30) DEFAULT 'INSCRITO',
+
+            uuid_qrcode VARCHAR(100),
+
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+            CONSTRAINT fk_inscricao_evento
+                FOREIGN KEY (evento_id)
+                REFERENCES eventos(id)
+                ON DELETE CASCADE,
+
+            CONSTRAINT fk_inscricao_participante
+                FOREIGN KEY (participante_id)
+                REFERENCES participantes(id)
+                ON DELETE CASCADE,
+
+            CONSTRAINT fk_inscricao_veiculo
+                FOREIGN KEY (veiculo_id)
+                REFERENCES veiculos(id)
+                ON DELETE CASCADE
+
+        );
+    """)
+
     conn.commit()
 
     cur.close()
