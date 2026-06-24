@@ -5,9 +5,6 @@ import os
 from database.usuarios_db import validar_login
 
 
-# =========================
-# FUNDO DA TELA
-# =========================
 def set_bg():
 
     img_path = "assets/fundo.jpeg"
@@ -33,7 +30,7 @@ def set_bg():
         }}
 
         html, body {{
-            overflow: hidden;
+            overflow-x: hidden;
         }}
 
         h1, h2, h3, .stTitle {{
@@ -78,13 +75,42 @@ def set_bg():
             color: white;
         }}
 
+        @media (max-width: 768px) {{
+
+            .stApp {{
+                background-size: 360px auto;
+                background-position: center 70px;
+                background-attachment: scroll;
+            }}
+
+            .block-container {{
+                max-width: 88vw;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 430px;
+                padding: 1.4rem;
+                border-radius: 14px;
+            }}
+
+            h1 {{
+                font-size: 28px !important;
+            }}
+
+            .stTextInput > div > div > input {{
+                height: 46px;
+                font-size: 16px;
+            }}
+
+            div.stButton > button {{
+                height: 46px;
+                font-size: 16px;
+            }}
+        }}
+
         </style>
     """, unsafe_allow_html=True)
 
 
-# =========================
-# TELA DE LOGIN
-# =========================
 def tela_login():
 
     set_bg()
