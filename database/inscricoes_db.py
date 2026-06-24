@@ -33,9 +33,21 @@ def listar_inscricoes():
         df = pd.read_sql(query, conn)
 
         if not df.empty:
-            df["chegada_prevista"] = pd.to_datetime(df["chegada_prevista"]).dt.strftime("%d-%m-%Y")
-            df["saida_prevista"] = pd.to_datetime(df["saida_prevista"]).dt.strftime("%d-%m-%Y")
-            df["created_at"] = pd.to_datetime(df["created_at"]).dt.strftime("%d-%m-%Y %H:%M")
+
+            df["chegada_prevista"] = pd.to_datetime(
+                df["chegada_prevista"],
+                errors="coerce"
+            ).dt.strftime("%d/%m/%Y")
+
+            df["saida_prevista"] = pd.to_datetime(
+                df["saida_prevista"],
+                errors="coerce"
+            ).dt.strftime("%d/%m/%Y")
+
+            df["created_at"] = pd.to_datetime(
+                df["created_at"],
+                errors="coerce"
+            ).dt.strftime("%d/%m/%Y %H:%M")
 
         return df
 

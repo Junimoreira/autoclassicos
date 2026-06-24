@@ -11,11 +11,18 @@ from telas.participantes import tela_participantes
 from telas.veiculos import tela_veiculos
 from telas.dashboard import tela_dashboard
 from telas.inscricoes import tela_inscricoes
+from telas.inscricao_publica import tela_inscricao_publica
 
 
 st.set_page_config(page_title="AutoClássicos", layout="wide")
 
 criar_tabelas()
+
+params = st.query_params
+
+if params.get("pagina") == "inscricao":
+    tela_inscricao_publica()
+    st.stop()
 
 
 def aplicar_estilo_sistema():

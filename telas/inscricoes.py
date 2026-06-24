@@ -117,11 +117,13 @@ def tela_inscricoes():
                 )
 
                 chegada_prevista = st.date_input(
-                    "Chegada Prevista"
+                    "Chegada Prevista",
+                    format="DD/MM/YYYY"
                 )
 
                 saida_prevista = st.date_input(
-                    "Saída Prevista"
+                    "Saída Prevista",
+                    format="DD/MM/YYYY"
                 )
 
                 observacoes = st.text_area(
