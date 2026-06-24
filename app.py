@@ -18,9 +18,6 @@ st.set_page_config(page_title="AutoClássicos", layout="wide")
 criar_tabelas()
 
 
-# =========================
-# ESTILO GLOBAL DO SISTEMA
-# =========================
 def aplicar_estilo_sistema():
     st.markdown("""
         <style>
@@ -30,7 +27,7 @@ def aplicar_estilo_sistema():
         }
 
         section[data-testid="stSidebar"] {
-            background: linear-gradient(180deg, #0D2C54 0%, #1E5AA8 100%);
+            background: linear-gradient(180deg, #0D2C54 0%, #1E5AA8 100%) !important;
         }
 
         section[data-testid="stSidebar"] * {
@@ -63,10 +60,6 @@ def aplicar_estilo_sistema():
         .stCheckbox label p {
             color: #0D2C54 !important;
             font-weight: 700 !important;
-        }
-
-        div[data-baseweb="select"] {
-            color: #0D2C54 !important;
         }
 
         .stTabs [data-baseweb="tab-list"] {
@@ -114,22 +107,67 @@ def aplicar_estilo_sistema():
         input, textarea {
             border-radius: 8px !important;
         }
-        
-        section[data-testid="stSidebar"] div[data-baseweb="select"] * {
-            color: #0D2C54 !important;
+
+        div[role="radiogroup"] label {
+            width: 100% !important;
+            min-width: 190px !important;
+            background: rgba(255, 255, 255, 0.10) !important;
+            border-radius: 12px !important;
+            padding: 11px 14px !important;
+            margin-bottom: 8px !important;
+            border: 1px solid rgba(255, 255, 255, 0.14) !important;
+            display: flex !important;
+            align-items: center !important;
         }
 
-        section[data-testid="stSidebar"] input {
+        div[role="radiogroup"] {
+            width: 100% !important;
+        }
+
+        section[data-testid="stSidebar"] div[data-testid="stRadio"] {
+            width: 100% !important;
+        }
+
+        div[role="radiogroup"] label > div:first-child {
+            display: none !important;
+        }
+
+        div[role="radiogroup"] label p {
+            font-size: 15px !important;
+            font-weight: 800 !important;
+            color: #FFFFFF !important;
+            margin: 0 !important;
+            line-height: 1.2 !important;
+        }
+
+        div[role="radiogroup"] label:hover {
+            background: rgba(255, 255, 255, 0.22) !important;
+        }
+
+        div[role="radiogroup"] label:has(input:checked) {
+            background: linear-gradient(90deg, #D4AF37 0%, #C89B2C 100%) !important;
+            border: 1px solid #D4AF37 !important;
+        }
+
+        div[role="radiogroup"] label:has(input:checked) p {
             color: #0D2C54 !important;
+            font-weight: 900 !important;
+        }
+
+        [data-testid="collapsedControl"] {
+            background-color: #0D2C54 !important;
+            border-radius: 8px;
+            padding: 4px;
+        }
+
+        [data-testid="collapsedControl"] svg {
+            color: white !important;
         }
 
         </style>
     """, unsafe_allow_html=True)
 
 
-# =========================
-# ESTADO INICIAL
-# =========================
 if "inicializado" not in st.session_state:
     st.session_state["inicializado"] = False
 
@@ -137,9 +175,6 @@ if "logado" not in st.session_state:
     st.session_state["logado"] = False
 
 
-# =========================
-# LOADING SCREEN
-# =========================
 if not st.session_state["inicializado"]:
 
     st.markdown("""
@@ -188,9 +223,6 @@ if not st.session_state["inicializado"]:
     st.rerun()
 
 
-# =========================
-# SISTEMA NORMAL
-# =========================
 if not st.session_state["logado"]:
     tela_login()
 
@@ -200,32 +232,42 @@ else:
 
     st.sidebar.title("🚗 AutoClássicos")
 
-    menu = st.sidebar.selectbox(
+    menu = st.sidebar.radio(
         "Menu",
-        ["Dashboard", "Usuários", "Eventos", "Clubes", "Participantes", "Veículos", "Inscrições", "Sair"]
+        [
+            "🏠 Dashboard",
+            "👥 Usuários",
+            "📅 Eventos",
+            "🏁 Clubes",
+            "👤 Participantes",
+            "🚗 Veículos",
+            "📝 Inscrições",
+            "🚪 Sair"
+        ],
+        label_visibility="collapsed"
     )
 
-    if menu == "Sair":
+    if menu == "🚪 Sair":
         st.session_state["logado"] = False
         st.rerun()
 
-    elif menu == "Dashboard":
+    elif menu == "🏠 Dashboard":
         tela_dashboard()
 
-    elif menu == "Usuários":
+    elif menu == "👥 Usuários":
         tela_usuarios()
 
-    elif menu == "Eventos":
+    elif menu == "📅 Eventos":
         tela_eventos()
 
-    elif menu == "Clubes":
+    elif menu == "🏁 Clubes":
         tela_clubes()
 
-    elif menu == "Participantes":
+    elif menu == "👤 Participantes":
         tela_participantes()
 
-    elif menu == "Veículos":
+    elif menu == "🚗 Veículos":
         tela_veiculos()
 
-    elif menu == "Inscrições":
+    elif menu == "📝 Inscrições":
         tela_inscricoes()
